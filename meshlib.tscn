@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+
+albedo_color = Color( 0.0470588, 0.270588, 1, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+
+material = SubResource( 1 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+
+points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
+
+[sub_resource type="NavigationMesh" id=4]
+
+vertices = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 1, 3, 2 ) ]
+
+[sub_resource type="SpatialMaterial" id=5]
+
+albedo_color = Color( 0.560784, 0.0156863, 0.0156863, 1 )
+
+[sub_resource type="PlaneMesh" id=6]
+
+material = SubResource( 5 )
+
+[sub_resource type="NavigationMesh" id=7]
+
+vertices = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 1, 3, 2 ) ]
+
+[sub_resource type="CubeMesh" id=8]
+
+
+[sub_resource type="NavigationMesh" id=9]
+
+vertices = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+polygons = [ PoolIntArray( 0, 2, 4 ), PoolIntArray( 2, 6, 4 ), PoolIntArray( 1, 3, 5 ), PoolIntArray( 3, 7, 5 ), PoolIntArray( 8, 10, 12 ), PoolIntArray( 10, 14, 12 ), PoolIntArray( 9, 11, 13 ), PoolIntArray( 11, 15, 13 ), PoolIntArray( 16, 18, 20 ), PoolIntArray( 18, 22, 20 ), PoolIntArray( 17, 19, 21 ), PoolIntArray( 19, 23, 21 ) ]
+
+[node name="Navigation" type="Spatial"]
+
+[node name="NavigationMeshInstance" type="Spatial" parent="."]
+
+[node name="Tile1" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Tile1StaticBody" type="StaticBody" parent="Tile1"]
+editor/display_folded = true
+
+[node name="Tile1Collision" type="CollisionShape" parent="Tile1/Tile1StaticBody"]
+shape = SubResource( 3 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Tile1"]
+navmesh = SubResource( 4 )
+
+[node name="Tile2" type="MeshInstance" parent="."]
+editor/display_folded = true
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="Tile2StaticBody" type="StaticBody" parent="Tile2"]
+
+[node name="Tile2Collision" type="CollisionShape" parent="Tile2/Tile2StaticBody"]
+shape = SubResource( 3 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Tile2"]
+navmesh = SubResource( 7 )
+
+[node name="Tile3" type="MeshInstance" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Tile2StaticBody" type="StaticBody" parent="Tile3"]
+
+[node name="Tile2Collision" type="CollisionShape" parent="Tile3/Tile2StaticBody"]
+shape = SubResource( 3 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Tile3"]
+navmesh = SubResource( 9 )
+
